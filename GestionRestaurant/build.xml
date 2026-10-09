@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="RestaurantManagementSystem" default="default" basedir=".">
+    <description>Builds, tests, and runs the project RestaurantManagementSystem.</description>
+    <import file="nbproject/build-impl.xml"/>
+    
+    <!-- Configuration du projet -->
+    <property name="main.class" value="view.MainFrame"/>
+    <property name="jar.name" value="RestaurantManagementSystem.jar"/>
+    
+    <!-- Cible pour créer un JAR exécutable -->
+    <target name="package" depends="jar">
+        <jar destfile="dist/${jar.name}" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="src" includes="**/*.java"/>
+        </jar>
+    </target>
+    
+    <!-- Cible pour exécuter l'application -->
+    <target name="run" depends="compile">
+        <java classname="${main.class}" fork="true">
+            <classpath>
+                <path location="build/classes"/>
+                <path location="lib/mysql-connector-java-8.0.33.jar"/>
+            </classpath>
+        </java>
+    </target>
+</project>
